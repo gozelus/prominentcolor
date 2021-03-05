@@ -285,6 +285,9 @@ func extractColors(img image.Image) (map[string]ColorItem, int) {
 		for y := data.Min.Y; y < data.Max.Y; y++ {
 			colorAt := img.At(x, y)
 			colorItem, ignore := createColor(colorAt)
+			if colorItem.Color.R > 250 && colorItem.Color.G > 250 && colorItem.Color.B > 250 {
+				continue
+			}
 			if ignore {
 				continue
 			}
